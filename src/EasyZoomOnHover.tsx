@@ -36,6 +36,7 @@ export type EasyZoomOnHoverProps = {
     zoomContainerWidth?: number;
     zoomContainerHeight?: number;
     zoomLensScale?: number;
+    style?: React.CSSProperties;
 }
 
 export type ImageDimensionType = {
@@ -46,7 +47,7 @@ export type ImageDimensionType = {
 
 const EasyZoomOnHover = React.forwardRef(function EasyZoomOnHover(props: EasyZoomOnHoverProps, ref: React.Ref<HTMLDivElement>) {
 
-    const { mainImage, zoomImage, loadingIndicator, delayTimer, distance = 10, zoomContainerWidth } = props;
+    const { mainImage, zoomImage, loadingIndicator, delayTimer, distance = 10, zoomContainerWidth, style } = props;
     const { createZoomImage: createZoomImageHover } = useZoomImageHover();
 
     const imageHoverContainerRef = React.useRef<HTMLDivElement>(null);
@@ -109,7 +110,7 @@ const EasyZoomOnHover = React.forwardRef(function EasyZoomOnHover(props: EasyZoo
                     className="EasyZoomHoverSmallImage"
                     onLoad={handleImageLoad}
                     ref={imgRef}
-                    style={{ height: "auto", width: "auto" }}
+                    style={{ height: "auto", width: "auto", ...style }}
                     alt={mainImage.alt ?? "Small Pic"}
                     src={mainImage.src}
                 />

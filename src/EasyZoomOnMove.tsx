@@ -21,6 +21,7 @@ type EasyZoomOnMovePropsType = {
         src: string;
         alt?: string;
     };
+    style?: React.CSSProperties;
 
 }
 
@@ -32,7 +33,7 @@ type ImageDimensionType = {
 
 const EasyZoomOnMove = (props: EasyZoomOnMovePropsType) => {
 
-    const { mainImage, zoomImage, loadingIndicator, delayTimer } = props;
+    const { mainImage, zoomImage, loadingIndicator, delayTimer, style } = props;
     const [isImageLoaded, setIsImageLoaded] = React.useState(false);
     const { createZoomImage: createZoomImageMove } = useZoomImageMove();
     const imageMoveContainerRef = React.useRef<HTMLDivElement>(null)
@@ -86,7 +87,7 @@ const EasyZoomOnMove = (props: EasyZoomOnMovePropsType) => {
             >
                 <img className='EasyImageZoomOnMoveImage'
                     onLoad={handleImageLoad} ref={imgRef as React.RefObject<HTMLImageElement>}
-                    style={{ width: "full", height: "full" }}
+                    style={{ height: "auto", width: "auto", ...style }}
                     alt={mainImage.alt ?? "Large Pic"} src={mainImage.src} />
             </div>
 
